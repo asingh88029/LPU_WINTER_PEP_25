@@ -1,0 +1,114 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+/* #container1{
+    background-color: red;
+    height: 100px;
+    margin: 0px 0px 40px 0px;
+}
+#container2{
+    background-color: blue;
+    height: 100px;
+}
+h1{
+    background-color: yellow;
+    color: red;
+    padding: 20px;
+    border: 4px solid green;
+}
+p{
+    line-height: 40px;
+} */
+/* .flex-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: yellow;
+    height: 100vh;
+    width: 100vw;
+}
+.circle{
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+} */
+/* .flex-container{ */
+    /* height: 100vh; */
+    /* background-color: red; */
+    /* display: flex;
+    flex-wrap: wrap;
+    gap : 20px; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    /* justify-content: space-between; */
+    /* justify-content: space-around; */
+    /* justify-content: space-evenly; */
+    /* justify-content: flex-start; */
+    /* justify-content: flex-end; */
+    /* align-items: center; */
+    /* align-items: flex-start; */
+    /* align-items: flex-end; */
+/* } */
+/* .flex-item{
+    font-size: 40px;
+    font-weight: 800;
+    width: 300px;
+    background-color: yellow;
+    border: 2px solid red;
+    height: 100px;
+} */
+
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px;
+    align-items: center;
+}
+
+.nav-items > img {
+    width: 50px;
+    height: 50px;
+}
+
+.nav-items > ul {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+}
+
+.nav-items > ul > a {
+    text-decoration: none;
+    color: black;
+}
+
+#cards_container{
+    background-color: red;
+    display: flex;
+    flex-wrap: wrap;
+    gap : 10px;
+    justify-content: center;
+}
+
+.cards{
+    background-color: yellow;
+    width: 200px;
+    height: 300px;
+
+    display : flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.cards-text{
+    text-align: center;
+}
+
+/* #container p {
+    color: red;
+} */
+
+#container > p{
+    color: blue;
+}

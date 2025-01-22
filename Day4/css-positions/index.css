@@ -1,0 +1,57 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+/* #container{
+
+    background-color: red;
+    width: 200px;
+    height: 200px;
+
+    position: relative;
+
+    left : 400px;
+    top: 500px;
+
+} */
+
+/* body{
+    background-color: yellow;
+    padding-left: 50px;
+} */
+
+/* #cont1{
+    width: 400px;
+    height: 400px;
+    background-color: red;
+    padding-left: 100px;
+    position: static;
+    position: fixed;
+    position: sticky;
+    position: absolute;
+    position: relative;
+} */
+
+/* #cont2{
+    position: relative;
+    background-color: blue;
+    width: 200px;
+    height: 200px;
+} */
+
+/* h1 {
+    background-color: white;
+    color: black;
+    position: absolute;
+    left: 0px;
+} */
+
+#chatbot{
+    width: 50px;
+    height: 50px;
+    background-color: green;
+    position: fixed;
+    bottom: 200px;
+    right: 200px;
+}

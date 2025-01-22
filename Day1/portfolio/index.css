@@ -1,0 +1,15 @@
+.experience-card{
+    background-color: pink;
+}
+#full_name{
+    color: red;
+}
+.blue-text{
+    color: blue;
+    background-color: yellow;
+}
+.experience-name{
+    font-size: large;
+    font-weight:400;
+    font-style:oblique;
+}
