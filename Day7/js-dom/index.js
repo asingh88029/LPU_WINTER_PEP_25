@@ -31,17 +31,73 @@
 
 // body.appendChild(button)
 
-const clickHandler = ()=>{
-    const imageURL = document.querySelector("#imageURL").value
-    const cityName = document.querySelector("#cityName").value
-    const cityDescription = document.querySelector("#cityDescription").value
+// const clickHandler = ()=>{
+//     const imageURL = document.querySelector("#imageURL").value
+//     const cityName = document.querySelector("#cityName").value
+//     const cityDescription = document.querySelector("#cityDescription").value
     
-    const cityCard = createCityCard(imageURL, cityName, cityDescription)
+//     const cityCard = createCityCard(imageURL, cityName, cityDescription)
 
-    document.querySelector("#city-container").appendChild(cityCard)
+//     document.querySelector("#city-container").appendChild(cityCard)
+// }
+
+// document.querySelector("#addCity").addEventListener("click", clickHandler)
+
+let cityContainer = document.querySelector("#city-container")
+
+let apiData = []
+
+let filteredData = []
+
+const API_BASE_URL= `https://makemytrip-backend-w2d2.onrender.com`
+
+fetch(`${API_BASE_URL}/cities`).then((response)=>{
+    return response.json()
+}).then((data)=>{
+
+    apiData = data
+
+    for(const city of data){
+        const {city : cityName, description, image} = city
+        
+        const card = createCityCard(image, cityName, description)
+
+        cityContainer.appendChild(card)
+    }
+
+}).catch((err)=>{
+    console.log(err)
+})
+
+document.querySelector("#searchBtn").addEventListener("click",clickHandler)
+
+document.querySelector("#clearBtn").addEventListener("click",()=>{
+    cityContainer.innerHTML=""
+    for(const city of apiData){
+        const {city : cityName, description, image} = city
+        
+        const card = createCityCard(image, cityName, description)
+
+        cityContainer.appendChild(card)
+    }
+})
+
+function clickHandler(){
+    const searchKeyword = document.querySelector("#searchInput").value
+    
+    filteredData = apiData.filter((city)=>{
+        const {city: cityName, description, id} = city
+        return (cityName.toLowerCase().includes(searchKeyword) || description.toLowerCase().includes(searchKeyword) || id.toLowerCase().includes(searchKeyword))
+    })
+
+    cityContainer.innerHTML=''
+
+    for(const city of filteredData){
+        const {city: cityName, description, id, image} = city
+        const card = createCityCard(image, cityName, description)
+        cityContainer.appendChild(card)
+    }
 }
-
-document.querySelector("#addCity").addEventListener("click", clickHandler)
 
 function createCityCard(imageURL, cityName, cityDescription){
 
