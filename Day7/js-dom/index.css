@@ -1,0 +1,29 @@
+.card > img{
+    width: 200px;
+    height: 400px;
+    position: absolute;
+}
+
+.card {
+    display: flex;
+}
+
+.card-text {
+
+    width: 200px;
+    height: 400px;
+
+    position: relative;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#city-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
