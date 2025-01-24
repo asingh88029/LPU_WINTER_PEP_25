@@ -82,42 +82,49 @@ function serverHandler(request, response){
 
             const data = JSON.parse(body)
 
-            const {name, description, state} = data
+            for(const city of data){
 
-            if(!name){
+                const {name, description, state} = city
 
-                const result = {
-                    success : false,
-                    message : "Name is required"
+                if(!name){
+
+                    const result = {
+                        success : false,
+                        message : "Name is required"
+                    }
+
+                    response.end(JSON.stringify(result))
+                    return
+
                 }
 
-                response.end(JSON.stringify(result))
+                if(!description){
 
-            }
+                    const result = {
+                        success : false,
+                        message : "Description is required"
+                    }
 
-            if(!description){
+                    response.end(JSON.stringify(result))
+                    return
 
-                const result = {
-                    success : false,
-                    message : "Description is required"
                 }
 
-                response.end(JSON.stringify(result))
+                if(!state){
 
-            }
+                    const result = {
+                        success : false,
+                        message : "State is required"
+                    }
 
-            if(!state){
+                    response.end(JSON.stringify(result))
+                    return
 
-                const result = {
-                    success : false,
-                    message : "State is required"
                 }
 
-                response.end(JSON.stringify(result))
+                DATABASE.push(city)
 
             }
-
-            DATABASE.push(data)
 
             const result = {
                 success : true,
