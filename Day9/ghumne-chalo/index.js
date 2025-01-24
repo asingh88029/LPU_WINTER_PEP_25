@@ -4,56 +4,67 @@ let PORT = 4000;
 
 let DATABASE = [
     {
-      name: "Mumbai",
-      description: "The financial capital of India, known for Bollywood and the Gateway of India.",
-      state: "Maharashtra"
+        id: 100001,
+        name: "Mumbai",
+        description: "The financial capital of India, known for Bollywood and the Gateway of India.",
+        state: "Maharashtra"
     },
     {
-      name: "Delhi",
-      description: "The capital city of India, famous for its historic monuments like the Red Fort and India Gate.",
-      state: "Delhi"
+        id: 100002,
+        name: "Delhi",
+        description: "The capital city of India, famous for its historic monuments like the Red Fort and India Gate.",
+        state: "Delhi"
     },
     {
-      name: "Bangalore",
-      description: "Known as the Silicon Valley of India, it is a hub for IT and startups.",
-      state: "Karnataka"
+        id: 100003,
+        name: "Bangalore",
+        description: "Known as the Silicon Valley of India, it is a hub for IT and startups.",
+        state: "Karnataka"
     },
     {
-      name: "Kolkata",
-      description: "A cultural and historical city, known for its colonial architecture and Durga Puja celebrations.",
-      state: "West Bengal"
+        id: 100004,
+        name: "Kolkata",
+        description: "A cultural and historical city, known for its colonial architecture and Durga Puja celebrations.",
+        state: "West Bengal"
     },
     {
-      name: "Chennai",
-      description: "A coastal city known for its temples, classical music, and Marina Beach.",
-      state: "Tamil Nadu"
+        id: 100005,
+        name: "Chennai",
+        description: "A coastal city known for its temples, classical music, and Marina Beach.",
+        state: "Tamil Nadu"
     },
     {
-      name: "Hyderabad",
-      description: "Famous for its biryani, Charminar, and its emerging IT industry.",
-      state: "Telangana"
+        id: 100006,
+        name: "Hyderabad",
+        description: "Famous for its biryani, Charminar, and its emerging IT industry.",
+        state: "Telangana"
     },
     {
-      name: "Jaipur",
-      description: "The Pink City, known for its palaces, forts, and rich cultural heritage.",
-      state: "Rajasthan"
+        id: 100007,
+        name: "Jaipur",
+        description: "The Pink City, known for its palaces, forts, and rich cultural heritage.",
+        state: "Rajasthan"
     },
     {
-      name: "Ahmedabad",
-      description: "A major city in Gujarat, known for its textile industry and the Sabarmati Ashram.",
-      state: "Gujarat"
+        id: 100008,
+        name: "Ahmedabad",
+        description: "A major city in Gujarat, known for its textile industry and the Sabarmati Ashram.",
+        state: "Gujarat"
     },
     {
-      name: "Pune",
-      description: "An educational and cultural hub, often called the Oxford of the East.",
-      state: "Maharashtra"
+        id: 100009,
+        name: "Pune",
+        description: "An educational and cultural hub, often called the Oxford of the East.",
+        state: "Maharashtra"
     },
     {
-      name: "Lucknow",
-      description: "The City of Nawabs, famous for its Tehzeeb (etiquette), cuisine, and Chikan embroidery.",
-      state: "Uttar Pradesh"
+        id: 100010,
+        name: "Lucknow",
+        description: "The City of Nawabs, famous for its Tehzeeb (etiquette), cuisine, and Chikan embroidery.",
+        state: "Uttar Pradesh"
     }
 ];
+
   
 
 const server = http.createServer(serverHandler)
@@ -122,6 +133,9 @@ function serverHandler(request, response){
 
                 }
 
+                city.id = generateId()
+
+
                 DATABASE.push(city)
 
             }
@@ -149,3 +163,8 @@ function serverHandler(request, response){
 server.listen(PORT, ()=>{
     console.log("HTTP Server is started on port : ", PORT)
 })
+
+
+function generateId(){
+    return  100000 + parseInt(Math.random()*899999)
+}
