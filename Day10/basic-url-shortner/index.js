@@ -42,7 +42,7 @@ server.post("/api/v1/short-url/new",(request, response)=>{
     // we will close the request
     response.status(201).json({
         success : true,
-        redirect_url : `http://localhost:${PORT}/${keyId}`
+        redirect_url : `http://${request.host}/${keyId}`
     })
 
 })
@@ -60,7 +60,7 @@ server.get("/:keyid",(req, res)=>{
     }
     const {clickedCount, url : originalURL, createdAt} = DATABASE.get(keyid)
 
-    if(new Date().getTime()>(createdAt+60000)){
+    if(new Date().getTime()>(createdAt+600000)){
         res.status(400).json({
             success : false,
             message : "Time limit of 1 minute is excedeed, please upgrade to pro plan for more time limit"
