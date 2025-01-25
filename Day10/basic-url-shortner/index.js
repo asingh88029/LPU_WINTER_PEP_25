@@ -35,7 +35,8 @@ server.post("/api/v1/short-url/new",(request, response)=>{
     // we will link url -> unique id
     DATABASE.set(keyId, {
         clickedCount : 0,
-        url : url
+        url : url,
+        createdAt : new Date().getTime()
     })
 
     // we will close the request
@@ -57,7 +58,14 @@ server.get("/:keyid",(req, res)=>{
             message : "Redirect URL is invalid"
         })
     }
-    const {clickedCount, url : originalURL} = DATABASE.get(keyid)
+    const {clickedCount, url : originalURL, createdAt} = DATABASE.get(keyid)
+
+    if(new Date().getTime()>(createdAt+60000)){
+        res.status(400).json({
+            success : false,
+            message : "Time limit of 1 minute is excedeed, please upgrade to pro plan for more time limit"
+        })
+    }
 
     if(clickedCount>=5){
         res.status(400).json({
@@ -68,7 +76,8 @@ server.get("/:keyid",(req, res)=>{
 
     const updatedValue = {
         clickedCount : clickedCount +1,
-        url : originalURL
+        url : originalURL,
+        createdAt : createdAt
     }
 
     DATABASE.set(keyid, updatedValue)
