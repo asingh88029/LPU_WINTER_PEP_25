@@ -2,7 +2,7 @@ const express = require("express")
 
 const server = express()
 
-const PORT = 4000
+const PORT = 4009
 
 server.use(express.json())
 
@@ -33,7 +33,10 @@ server.post("/api/v1/short-url/new",(request, response)=>{
     const keyId = generateUniqueId(6)
 
     // we will link url -> unique id
-    DATABASE.set(keyId, url)
+    DATABASE.set(keyId, {
+        clickedCount : 0,
+        url : url
+    })
 
     // we will close the request
     response.status(201).json({
@@ -54,7 +57,21 @@ server.get("/:keyid",(req, res)=>{
             message : "Redirect URL is invalid"
         })
     }
-    const originalURL = DATABASE.get(keyid)
+    const {clickedCount, url : originalURL} = DATABASE.get(keyid)
+
+    if(clickedCount>=5){
+        res.status(400).json({
+            success : false,
+            message : "Free Limit exceed, please upgrade to pro plan"
+        })
+    }
+
+    const updatedValue = {
+        clickedCount : clickedCount +1,
+        url : originalURL
+    }
+
+    DATABASE.set(keyid, updatedValue)
 
     // we will redirect the req to original url
     res.redirect(originalURL)
