@@ -69,21 +69,55 @@ fetch(`${API_BASE_URL}/cities`).then((response)=>{
     console.log(err)
 })
 
-document.querySelector("#searchBtn").addEventListener("click",clickHandler)
+// document.querySelector("#searchBtn").addEventListener("click",clickHandler)
 
-document.querySelector("#clearBtn").addEventListener("click",()=>{
-    cityContainer.innerHTML=""
-    for(const city of apiData){
-        const {city : cityName, description, image} = city
+// document.querySelector("#clearBtn").addEventListener("click",()=>{
+//     cityContainer.innerHTML=""
+//     for(const city of apiData){
+//         const {city : cityName, description, image} = city
         
-        const card = createCityCard(image, cityName, description)
+//         const card = createCityCard(image, cityName, description)
 
-        cityContainer.appendChild(card)
-    }
-})
+//         cityContainer.appendChild(card)
+//     }
+// })
 
-function clickHandler(){
+// function clickHandler(){
+//     const searchKeyword = document.querySelector("#searchInput").value
+    
+//     filteredData = apiData.filter((city)=>{
+//         const {city: cityName, description, id} = city
+//         return (cityName.toLowerCase().includes(searchKeyword) || description.toLowerCase().includes(searchKeyword) || id.toLowerCase().includes(searchKeyword))
+//     })
+
+//     cityContainer.innerHTML=''
+
+//     for(const city of filteredData){
+//         const {city: cityName, description, id, image} = city
+//         const card = createCityCard(image, cityName, description)
+//         cityContainer.appendChild(card)
+//     }
+// }
+
+const debounceInputHandler = debounce(inputHandler, 1000)
+
+document.querySelector("#searchInput").addEventListener("input", debounceInputHandler)
+
+function inputHandler(){
     const searchKeyword = document.querySelector("#searchInput").value
+
+    console.log(searchKeyword)
+
+    if(searchKeyword==""){
+        cityContainer.innerHTML=""
+        for(const city of apiData){
+            const {city : cityName, description, image} = city
+            
+            const card = createCityCard(image, cityName, description)
+
+            cityContainer.appendChild(card)
+        } 
+    }
     
     filteredData = apiData.filter((city)=>{
         const {city: cityName, description, id} = city
@@ -145,5 +179,47 @@ function createCityCard(imageURL, cityName, cityDescription){
 
 
 }
+
+function debounce(func, timer){
+    let timerId
+
+    return (...args)=>{
+        clearTimeout(timerId)
+        timerId = setTimeout(()=>{
+            func(...args)
+        }, timer)
+    }
+}
+
+
+// function greet(){
+//     console.log("hello")
+// }
+
+// greet()
+// greet()
+// greet()
+// greet()
+// greet()
+// greet()
+// greet()
+// greet()
+// greet()
+// greet()
+
+// const debounceGreet = debounce(greet, 1000)
+
+// debounceGreet()
+// debounceGreet()
+// debounceGreet()
+// debounceGreet()
+// debounceGreet()
+// debounceGreet()
+// debounceGreet()
+// debounceGreet()
+// debounceGreet()
+// debounceGreet()
+// debounceGreet()
+// debounceGreet()
 
 
